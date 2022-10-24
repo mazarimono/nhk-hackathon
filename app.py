@@ -1,12 +1,14 @@
 from flask import Flask
 import geopandas as gpd
 from geopy import distance
+import pandas as pd
+import random
 
 app = Flask(__name__)
 
 @app.route('/')
 def base_page():
-    return '''NHK Hackthon 2022-10-23 \n
+    return '''NHK Hackthon 2022-10-23:  \n
         we are group 11 !!!
 '''
 
@@ -34,6 +36,19 @@ def search_hinanjo_and_return(lat, lon):
         'distance': nearest_distance
     }
     return nearest_dict
+
+
+@app.route('/random_news')
+def return_randomnews():
+    df = pd.read_csv('data/nhk-news.csv')
+    random_int = random.randrange(0, len(df))
+    rand_df = df.iloc[random_int, :]
+    news_title = rand_df.loc['タイトル']
+    news_url = rand_df.loc['URL']
+    return {
+        'news_title': news_title,
+        'news_url': news_url
+    }
 
 
 if __name__ == "__main__":

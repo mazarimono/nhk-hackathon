@@ -2,3 +2,4 @@ flask
 geopy
 geopandas
 gunicorn
+pandas
