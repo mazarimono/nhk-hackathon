@@ -12,6 +12,8 @@ def base_page():
         we are group 11 !!!
 '''
 
+# /api/version/やること
+# route　を明確にAPIと分かるようにしておく
 
 @app.route('/hinanjo/<float:lat>/<float:lon>')
 def search_hinanjo_and_return(lat, lon):
