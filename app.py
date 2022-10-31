@@ -15,7 +15,7 @@ def base_page():
 # /api/version/やること
 # route　を明確にAPIと分かるようにしておく
 
-@app.route('/hinanjo/<float:lat>/<float:lon>')
+@app.route('/api/v0/geodata/hinanjo/<float:lat>/<float:lon>')
 def search_hinanjo_and_return(lat, lon):
     '''
     lat: float
@@ -40,7 +40,7 @@ def search_hinanjo_and_return(lat, lon):
     return nearest_dict
 
 
-@app.route('/random_news')
+@app.route('/api/v0/news/random_news')
 def return_randomnews():
     df = pd.read_csv('data/nhk-news.csv')
     random_int = random.randrange(0, len(df))
